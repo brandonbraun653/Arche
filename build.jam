@@ -1,0 +1,24 @@
+import feature ;
+
+# ------------------------------------------
+# Project Directories 
+# ------------------------------------------
+local arche_inc_dir = . ;
+
+
+explicit_alias PUB : : : : <include>$(arche_inc_dir) ;
+
+lib ARCHE_LIB
+    :   [ glob Arche/*.cpp ]
+        /CHIMERA//CHIMERA_CORE
+        /THOR//CORE
+        /THOR//CORE_PUB
+
+    :   <ChimeraBackend>Thor
+        <link>static
+        <use>PUB
+    ;
+explicit ARCHE_LIB ;
+
+
+explicit_alias ARCHE_CORE : ARCHE_LIB ;
