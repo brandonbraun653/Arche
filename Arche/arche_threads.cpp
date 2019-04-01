@@ -14,6 +14,7 @@
 #include <Chimera/gpio.hpp>
 
 #include <Arche/threads.hpp>
+#include <Arche/config/memory.hpp>
 
 static const uint32_t ledChangeDelay_mS = 250;
 
