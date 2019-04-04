@@ -9,6 +9,7 @@
  ********************************************************************************/
 
 /* Chimera Includes */
+#include <Chimera/chimera.hpp>
 #include <Chimera/gpio.hpp>
 #include <Chimera/threading.hpp>
 
@@ -22,12 +23,28 @@ namespace Arche
     void threadHeartbeat(void *argument)
     {
       Chimera::GPIO::GPIOClass led;
-      Chimera::Threading::signalThreadSetupComplete();
+      Chimera::Threading::signalSetupComplete();
 
       led.init(HEARTBEAT_GPIO_PORT, HEARTBEAT_GPIO_PIN);
       led.setMode(Chimera::GPIO::Drive::OUTPUT_PUSH_PULL, false);
       led.setState(Chimera::GPIO::State::LOW);
 
+      /*------------------------------------------------
+      Simple little powerup flash "animation"
+      ------------------------------------------------*/
+      for ( uint8_t x = 4; x > 0; x-- )
+      {
+        led.setState( Chimera::GPIO::State::HIGH );
+        Chimera::delayMilliseconds( 25 );
+
+        led.setState( Chimera::GPIO::State::LOW );
+        Chimera::delayMilliseconds( 75 );
+      }
+      Chimera::delayMilliseconds( 500 );
+
+      /*------------------------------------------------
+      Main loop, never returns
+      ------------------------------------------------*/
       for (;;)
       {
         led.setState(Chimera::GPIO::State::HIGH);

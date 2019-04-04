@@ -10,12 +10,13 @@
 
 /* Arche Includes */
 #include <Arche/arche.hpp>
-#include <Arche/arche_threads.hpp>
-#include <Arche/config/serial.hpp>
-#include <Arche/config/memory.hpp>
+#include <Arche/config/watchdog.hpp>
 
 /* Chimera Includes */
+#include <Chimera/chimera.hpp>
 #include <Chimera/threading.hpp>
+
+Chimera::Watchdog::WatchdogClass watchdog;
 
 namespace Arche
 {
@@ -23,12 +24,21 @@ namespace Arche
   {
     void sysMain(void *argument)
     {
+      /*------------------------------------------------
+      Start up the system watchdog
+      ------------------------------------------------*/
+      watchdog.initialize(Config::Watchdog::TIMEOUT_MS);
+      watchdog.start();
 
-      Chimera::Threading::signalThreadSetupComplete();
+      #if defined( DEBUG )
+      watchdog.pauseOnDebugHalt(true);
+      #endif 
+
+      Chimera::Threading::signalSetupComplete();
 
       for (;;)
       {
-
+        watchdog.kick();
         Chimera::delayMilliseconds(100);
       }
     }

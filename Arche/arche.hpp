@@ -11,6 +11,10 @@
 #ifndef ARCHE_HPP
 #define ARCHE_HPP
 
+/* Chimera Includes */
+#include <Chimera/watchdog.hpp>
 
+
+extern Chimera::Watchdog::WatchdogClass watchdog;
 
 #endif /* !ARCHE_HPP */

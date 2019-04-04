@@ -18,6 +18,9 @@
 
 namespace Arche
 {
+  static constexpr uint8_t numThreads = 3;
+  extern const Chimera::Threading::Thread_t threads[ numThreads ];
+
   namespace HeartBeat
   {
     /*------------------------------------------------
@@ -37,19 +40,9 @@ namespace Arche
     static constexpr configSTACK_DEPTH_TYPE RTOS_STACK_DEPTH = STACK_BYTES / sizeof(configSTACK_DEPTH_TYPE);
 
     /*------------------------------------------------
-    A unique name for the thread
-    ------------------------------------------------*/
-    static const char* threadName = "heartbeat";
-
-    /*------------------------------------------------
     System thread priority: Increasing values equals increasing priority
     ------------------------------------------------*/
     static constexpr uint8_t threadPriority = 2;
-
-    /*------------------------------------------------
-    Will point to the registered instance of the thread in FreeRTOS
-    ------------------------------------------------*/
-    extern TaskHandle_t threadHandle;
   }
 
   namespace IOP
@@ -71,19 +64,9 @@ namespace Arche
     static constexpr configSTACK_DEPTH_TYPE RTOS_STACK_DEPTH = STACK_BYTES / sizeof(configSTACK_DEPTH_TYPE);
 
     /*------------------------------------------------
-    A unique name for the thread
-    ------------------------------------------------*/
-    static const char* threadName = "iop_serial";
-
-    /*------------------------------------------------
     System thread priority: Increasing values equals increasing priority
     ------------------------------------------------*/
     static constexpr uint8_t threadPriority = 5;
-
-    /*------------------------------------------------
-    Will point to the registered instance of the thread in FreeRTOS
-    ------------------------------------------------*/
-    extern TaskHandle_t threadHandle;
   }
 
   namespace SYS
@@ -105,19 +88,9 @@ namespace Arche
     static constexpr configSTACK_DEPTH_TYPE RTOS_STACK_DEPTH = STACK_BYTES / sizeof(configSTACK_DEPTH_TYPE);
 
     /*------------------------------------------------
-    A unique name for the thread
-    ------------------------------------------------*/
-    static const char* threadName = "sys_main";
-
-    /*------------------------------------------------
     System thread priority: Increasing values equals increasing priority
     ------------------------------------------------*/
     static constexpr uint8_t threadPriority = 4;
-
-    /*------------------------------------------------
-    Will point to the registered instance of the thread in FreeRTOS
-    ------------------------------------------------*/
-    extern TaskHandle_t threadHandle;
   }
 }
 

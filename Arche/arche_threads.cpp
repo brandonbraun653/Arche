@@ -8,22 +8,17 @@
  *  2019 | Brandon Braun | brandonbraun653@gmail.com
  ********************************************************************************/
 
- #include <Arche/arche_threads.hpp>
+#include <array>
+
+#include <Arche/arche_threads.hpp>
 
 namespace Arche
 {
-  namespace HeartBeat
-  {
-    TaskHandle_t threadHandle;
-  }
+  static constexpr std::array<TaskHandle_t, numThreads> threadHandles{};
 
-  namespace IOP
-  {
-    TaskHandle_t threadHandle;
-  }
-
-  namespace SYS
-  {
-    TaskHandle_t threadHandle;
-  }
+  const Chimera::Threading::Thread_t threads[ numThreads ] = {
+    { HeartBeat::threadHeartbeat, threadHandles[ 0 ], HeartBeat::threadPriority, nullptr, HeartBeat::RTOS_STACK_DEPTH },
+    { IOP::iopSerial, threadHandles[ 1 ], IOP::threadPriority, nullptr, IOP::RTOS_STACK_DEPTH },
+    { SYS::sysMain, threadHandles[ 2 ], SYS::threadPriority, nullptr, SYS::RTOS_STACK_DEPTH }
+  };
 }

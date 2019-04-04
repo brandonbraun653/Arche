@@ -15,9 +15,39 @@
 /* C++ Includes */
 #include <cstdint>
 
+/* Arche Includes */
+#include "arche_user_config.hpp"
+
 namespace Arche
 {
-  static constexpr uint8_t ACK_BYTE = 0x79;
+  namespace Config
+  {
+    namespace Serial
+    {
+      static constexpr uint8_t ACK_BYTE = 0x79;
+
+      /*------------------------------------------------
+      TX GPIO Config
+      ------------------------------------------------*/
+      static constexpr Chimera::GPIO::Port TX_GPIO_PORT   = USER_SERIAL_TX_GPIO_PORT;
+      static constexpr Chimera::GPIO::Drive TX_GPIO_DRIVE = USER_SERIAL_TX_GPIO_DRIVE;
+      static constexpr uint32_t TX_GPIO_ALTERNATE         = USER_SERIAL_TX_GPIO_ALTERNATE;
+      static constexpr uint8_t TX_GPIO_PIN                = USER_SERIAL_TX_GPIO_PIN;
+
+      /*------------------------------------------------
+      RX GPIO Config
+      ------------------------------------------------*/
+      static constexpr Chimera::GPIO::Port RX_GPIO_PORT   = USER_SERIAL_RX_GPIO_PORT;
+      static constexpr Chimera::GPIO::Drive RX_GPIO_DRIVE = USER_SERIAL_RX_GPIO_DRIVE;
+      static constexpr uint32_t RX_GPIO_ALTERNATE         = USER_SERIAL_RX_GPIO_ALTERNATE;
+      static constexpr uint8_t RX_GPIO_PIN                = USER_SERIAL_RX_GPIO_PIN;
+
+      /*------------------------------------------------
+      Peripheral Config
+      ------------------------------------------------*/
+      static constexpr uint8_t CHANNEL = USER_SERIAL_CHANNEL;
+    }
+  }
 }
 
 
