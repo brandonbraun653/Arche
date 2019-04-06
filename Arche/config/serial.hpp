@@ -24,8 +24,6 @@ namespace Arche
   {
     namespace Serial
     {
-      static constexpr uint8_t ACK_BYTE = 0x79;
-
       /*------------------------------------------------
       TX GPIO Config
       ------------------------------------------------*/
@@ -46,6 +44,12 @@ namespace Arche
       Peripheral Config
       ------------------------------------------------*/
       static constexpr uint8_t CHANNEL = USER_SERIAL_CHANNEL;
+
+      /*------------------------------------------------
+      Protocol Config
+      ------------------------------------------------*/
+      static constexpr uint8_t ACK_BYTE  = 0x79;
+      static constexpr uint8_t NACK_BYTE = 0x1F;
     }
   }
 }

@@ -23,26 +23,29 @@
 
 namespace Arche
 {
-  namespace HeartBeat
+  namespace Config
   {
-    /*------------------------------------------------
-    Amount of time the LED spends with a logical HIGH signal applied to the GPIO
-    ------------------------------------------------*/
-    static constexpr uint8_t HEARTBEAT_TIME_HI_MS = 250;
+    namespace LED
+    {
+      /*------------------------------------------------
+      Amount of time the LED spends with a logical HIGH signal applied to the GPIO
+      ------------------------------------------------*/
+      static constexpr uint8_t HEARTBEAT_TIME_HI_MS = 250;
 
-    /*------------------------------------------------
-    Amount of time the LED spends with a logical LOW signal applied to the GPIO
-    ------------------------------------------------*/
-    static constexpr uint8_t HEARTBEAT_TIME_LO_MS = 250;
+      /*------------------------------------------------
+      Amount of time the LED spends with a logical LOW signal applied to the GPIO
+      ------------------------------------------------*/
+      static constexpr uint8_t HEARTBEAT_TIME_LO_MS = 250;
 
-    /*------------------------------------------------
-    User GPIO configuration options for the heartbeat
-    ------------------------------------------------*/
+      /*------------------------------------------------
+      User GPIO configuration options for the heartbeat
+      ------------------------------------------------*/
 #if defined( ARCHE_HEARTBEAT_ENABLED )
-    static constexpr uint8_t HEARTBEAT_GPIO_PIN              = USER_HEARTBEAT_GPIO_PIN;
-    static constexpr Chimera::GPIO::Port HEARTBEAT_GPIO_PORT = USER_HEARTBEAT_GPIO_PORT;
+      static constexpr uint8_t HEARTBEAT_GPIO_PIN              = USER_HEARTBEAT_GPIO_PIN;
+      static constexpr Chimera::GPIO::Port HEARTBEAT_GPIO_PORT = USER_HEARTBEAT_GPIO_PORT;
 #endif /* ARCHE_HEARTBEAT_ENABLED */
-  }
-}
+    }  // namespace LED
+  }    // namespace Config
+}  // namespace Arche
 
 #endif /* !ARCHE_CONFIG_LED_HPP */

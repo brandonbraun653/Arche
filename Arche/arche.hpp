@@ -12,9 +12,11 @@
 #define ARCHE_HPP
 
 /* Chimera Includes */
+#include <Chimera/serial.hpp>
+#include <Chimera/threading.hpp>
 #include <Chimera/watchdog.hpp>
 
-
+extern Chimera::Serial::SerialClass serial;
 extern Chimera::Watchdog::WatchdogClass watchdog;
 
 #endif /* !ARCHE_HPP */
