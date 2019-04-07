@@ -12,6 +12,7 @@
 #include <Arche/arche.hpp>
 #include <Arche/threads.hpp>
 #include <Arche/commands.hpp>
+#include <Arche/config/serial.hpp>
 
 /* Chimera Includes */
 #include <Chimera/chimera.hpp>
@@ -19,6 +20,9 @@
 
 namespace Arche
 {
+  static constexpr std::array<uint8_t, 15> getResponse = {};
+
+
   void threadGet( void *argument )
   {
     Chimera::Threading::signalSetupComplete();
@@ -39,7 +43,16 @@ namespace Arche
       {
         if ( serial.reserve( 0 ) == Chimera::CommonStatusCodes::OK )
         {
-          serial.write( reinterpret_cast<const uint8_t *>( msg.data() ), msg.length() );
+          /*------------------------------------------------
+          Protocol Step 1: Send ACK byte
+          ------------------------------------------------*/
+          Command::sendACKByte();
+
+
+          /*------------------------------------------------
+          Protocol Step 5: Send ACK byte
+          ------------------------------------------------*/
+          Command::sendACKByte();
 
           /*------------------------------------------------
           We are done with the command sequence. Go back to the dispatch thread.

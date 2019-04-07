@@ -153,7 +153,7 @@ namespace Arche
             
             if( !dispatchThread )
             {
-              serial.write( reinterpret_cast<const uint8_t*>(fail.c_str()), fail.length());
+              Command::sendNACKByte();
             }
           } while ( !dispatchThread );
 

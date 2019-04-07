@@ -19,4 +19,8 @@
 extern Chimera::Serial::SerialClass serial;
 extern Chimera::Watchdog::WatchdogClass watchdog;
 
+namespace Arche
+{
+  static constexpr uint8_t BOOTLOADER_VERSION = 0x10; /* 1.0 */
+}
 #endif /* !ARCHE_HPP */

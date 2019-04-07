@@ -61,6 +61,10 @@ namespace Arche
 
     extern const boost::container::flat_map<Command_t, uint8_t> threadIndex;
 
+    void sendACKByte();
+
+    void sendNACKByte();
+
   }  // namespace Command
 }  // namespace Arche
 

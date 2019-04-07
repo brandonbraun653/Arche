@@ -8,11 +8,13 @@
  *   2019 | Brandon Braun | brandonbraun653@gmail.com
  ********************************************************************************/
 
- /* C++ Includes */
+/* C++ Includes */
 
- /* Arche Includes */
- #include <Arche/commands.hpp>
- #include <Arche/threads.hpp>
+/* Arche Includes */
+#include <Arche/arche.hpp>
+#include <Arche/commands.hpp>
+#include <Arche/threads.hpp>
+#include <Arche/config/serial.hpp>
 
 namespace Arche
 {
@@ -34,5 +36,15 @@ namespace Arche
       { READOUT_UNPROTECT,      14 }
     };
     /* clang-format on */
+
+    void sendACKByte()
+    {
+      serial.write( &Arche::Config::Serial::ACK_BYTE, sizeof( Arche::Config::Serial::ACK_BYTE ) );
+    }
+
+    void sendNACKByte()
+    {
+      serial.write( &Arche::Config::Serial::NACK_BYTE, sizeof( Arche::Config::Serial::NACK_BYTE ) );
+    }
   }
 }
