@@ -10,6 +10,7 @@ explicit_alias PUB : : : : <include>$(arche_inc_dir) ;
 
 lib ARCHE_LIB
     :   [ glob Arche/*.cpp ]
+        [ glob Arche/threads/*.cpp ]
         /CHIMERA//CHIMERA_CORE
         /THOR//CORE
         /THOR//CORE_PUB
@@ -17,6 +18,8 @@ lib ARCHE_LIB
     :   <ChimeraBackend>Thor
         <link>static
         <use>PUB
+
+        <use>/PRJ//ARCHE_USER_CONFIG
     ;
 explicit ARCHE_LIB ;
 
