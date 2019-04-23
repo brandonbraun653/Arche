@@ -20,6 +20,13 @@ namespace Arche
 {
   namespace Command
   {
+    /*------------------------------------------------
+    The DMA hardware is usually too fast for the serial port and
+    will overload it. This small time buffer proved useful in
+    stabilizing the system.
+    ------------------------------------------------*/
+    static constexpr uint32_t DMADelay_mS = 5;
+    
     /* clang-format off */
     const boost::container::flat_map<Command_t, uint8_t> threadIndex = { 
       { GET,                    3  },
@@ -40,11 +47,13 @@ namespace Arche
     void sendACKByte()
     {
       serial.write( &Arche::Config::Serial::ACK_BYTE, sizeof( Arche::Config::Serial::ACK_BYTE ) );
+      Chimera::delayMilliseconds( DMADelay_mS );
     }
 
     void sendNACKByte()
     {
       serial.write( &Arche::Config::Serial::NACK_BYTE, sizeof( Arche::Config::Serial::NACK_BYTE ) );
+      Chimera::delayMilliseconds( DMADelay_mS );
     }
   }
 }

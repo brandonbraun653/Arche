@@ -18,9 +18,6 @@
 /* User Includes */
 #include "arche_user_config.hpp"
 
-/* Chimera Includes */
-#include <Chimera/interface.hpp>
-
 namespace Arche
 {
   namespace Config

@@ -10,6 +10,7 @@
 
 /* Arche Includes */
 #include <Arche/threads.hpp>
+#include <Arche/utilities.hpp>
 
 /* Chimera Includes */
 #include <Chimera/chimera.hpp>
@@ -17,6 +18,8 @@
 
 namespace Arche
 {
+  static bool readProtectionEnabled = false;
+  
   void threadReadoutProtect( void *argument )
   {
     Chimera::Threading::signalSetupComplete();
@@ -25,5 +28,11 @@ namespace Arche
     {
       Chimera::delayMilliseconds( 100 );
     }
+  }
+
+
+  bool isRDPActive()
+  {
+    return readProtectionEnabled;
   }
 }

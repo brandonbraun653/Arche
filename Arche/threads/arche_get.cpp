@@ -43,13 +43,6 @@ namespace Arche
 
   void threadGet( void *argument )
   {
-    /*------------------------------------------------
-    The DMA hardware is usually too fast for the serial port and 
-    will overload it. This small time buffer proved useful in 
-    stabilizing the system.
-    ------------------------------------------------*/
-    static constexpr uint32_t DMADelay_mS = 5;
-    
     Chimera::Threading::signalSetupComplete();
 
     /*------------------------------------------------
@@ -71,19 +64,16 @@ namespace Arche
           Protocol Step 1: Send ACK byte
           ------------------------------------------------*/
           Command::sendACKByte();
-          Chimera::delayMilliseconds( DMADelay_mS );
 
           /*------------------------------------------------
           Protocol Step 2-4: Send the number of bytes + version + supported commands
           ------------------------------------------------*/
           serial.write( getResponse.data(), getResponse.size() );
-          Chimera::delayMilliseconds( DMADelay_mS );
 
           /*------------------------------------------------
           Protocol Step 5: Send ACK byte
           ------------------------------------------------*/
           Command::sendACKByte();
-          Chimera::delayMilliseconds( DMADelay_mS );
 
           /*------------------------------------------------
           We are done with the command sequence. Go back to the dispatch thread.
