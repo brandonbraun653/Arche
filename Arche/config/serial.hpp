@@ -46,6 +46,7 @@ namespace Arche
       static constexpr uint8_t CHANNEL = USER_SERIAL_CHANNEL;
       static constexpr uint32_t BAUD   = static_cast<uint32_t>( Chimera::Serial::BaudRate::SERIAL_BAUD_115200 );
       static constexpr float MS_PER_BYTE = 1000.0f / static_cast<float>( BAUD / 8 );
+      static constexpr uint32_t BUFFER_SIZE = 512;
 
       /*------------------------------------------------
       Protocol Config

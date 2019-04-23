@@ -31,6 +31,13 @@ namespace Arche
 
   bool isAddressValid( const uint32_t address )
   {
-    
+    // Guess you need to implement this huh?
+    return false;
+  }
+
+  bool isAddressOptionBytes( const uint32_t address )
+  {
+    // Guess you need to implement this huh?
+    return false;
   }
 }

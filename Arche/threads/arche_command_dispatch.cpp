@@ -30,12 +30,10 @@ static const Chimera::Serial::Parity parity    = Chimera::Serial::Parity::PAR_NO
 static const Chimera::Serial::StopBits stop    = Chimera::Serial::StopBits::SBITS_ONE;
 static const Chimera::Serial::FlowControl flow = Chimera::Serial::FlowControl::FCTRL_NONE;
 
-static constexpr size_t bufferSize = 100;
-Chimera::Serial::SerialClass serial( bufferSize );
+Chimera::Serial::SerialClass serial( Arche::Config::Serial::BUFFER_SIZE );
 
-static const std::string fail = "Command not understood\r\n";
-static boost::circular_buffer<uint8_t> rxBuffer( bufferSize );
-static boost::circular_buffer<uint8_t> txBuffer( bufferSize );
+static boost::circular_buffer<uint8_t> rxBuffer( Arche::Config::Serial::BUFFER_SIZE );
+static boost::circular_buffer<uint8_t> txBuffer( Arche::Config::Serial::BUFFER_SIZE );
 
 namespace Arche
 {
